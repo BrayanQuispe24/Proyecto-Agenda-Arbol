@@ -11,6 +11,7 @@ import Negocio.ArbolBinarioBusqueda;
 import Negocio.ArbolMViasBusqueda;
 import Negocio.IArbolBusqueda;
 import Negocio.Persona;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -63,6 +64,8 @@ public class Formulario extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,7 +97,7 @@ public class Formulario extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 30, 140, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 20, 140, -1));
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 92, -1));
 
         jButton2.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
@@ -156,7 +159,7 @@ public class Formulario extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, 140, -1));
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 80, 140, -1));
 
         jLabel5.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         jLabel5.setText("DIRECCION");
@@ -169,7 +172,24 @@ public class Formulario extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 60, 140, -1));
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 50, 140, -1));
+
+        jButton7.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
+        jButton7.setText("INSERTAR REGISTROS");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 110, 140, -1));
+
+        jButton8.setText("toSring");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 420, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -274,7 +294,7 @@ public class Formulario extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        List<Persona> lista=arbol.recorridoPorNiveles();
+        List<Persona> lista=arbol.recorridoEnInOrden();
         String todos="";
         for(Persona personaActual:lista){
             todos=todos+personaActual.toString()+"\n"+"\n";
@@ -286,6 +306,39 @@ public class Formulario extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        ArrayList<Persona> contactos = new ArrayList<>();
+        contactos.add(new Persona(123456789, "Juan Pérez", "Calle Falsa 123"));
+        contactos.add(new Persona(987654321, "Ana Gómez", "Avenida Siempre Viva 742"));
+        contactos.add(new Persona(555123456, "Carlos López", "Calle de la Paz 56"));
+        contactos.add(new Persona(333222111, "María Sánchez", "Plaza Mayor 14"));
+        contactos.add(new Persona(444555666, "Pedro Díaz", "Calle Sol 24"));
+        contactos.add(new Persona(777888999, "Laura Martínez", "Av. Libertad 89"));
+        contactos.add(new Persona(212345678, "José Rodríguez", "Calle del Río 32"));
+        contactos.add(new Persona(321654987, "Carmen Ruiz", "Calle del Sol 16"));
+        contactos.add(new Persona(666777888, "Luis Fernández", "C/ de la Estrella 90"));
+        contactos.add(new Persona(555432109, "Beatriz González", "Av. Central 12"));
+        contactos.add(new Persona(999888777, "Francisco Pérez", "C/ del Norte 8"));
+        contactos.add(new Persona(888777666, "Marta López", "Av. del Sur 23"));
+        contactos.add(new Persona(111222333, "Juanita Rodríguez", "Calle Santa Teresa 11"));
+        contactos.add(new Persona(444333222, "Andrés Martínez", "Calle Flor 20"));
+        contactos.add(new Persona(333444555, "Susana García", "Plaza del Sol 6"));
+        contactos.add(new Persona(555123987, "Raúl Fernández", "Av. del Mar 101"));
+        contactos.add(new Persona(888444333, "Patricia Jiménez", "Calle Castilla 3"));
+        contactos.add(new Persona(777666555, "Javier Hernández", "Calle del Prado 15"));
+        contactos.add(new Persona(2125678901, "Carmen López", "C/ del Prado 22"));
+        contactos.add(new Persona(321876543, "Vicente Sánchez", "Calle Nueva 18"));
+        for(Persona personaActual:contactos ){
+        arbol.insertar(personaActual);
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        jTextArea1.setText(arbol.toString());
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -330,6 +383,8 @@ public class Formulario extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

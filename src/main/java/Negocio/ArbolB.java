@@ -52,7 +52,7 @@ public class ArbolB<T extends Comparable<T>> extends ArbolMViasBusqueda<T> {
                 int posicionDeDatoEnNodo = this.buscarPosicionDeDatoEnNodo(nodoAux, claveAInsertar);
 
                 if (posicionDeDatoEnNodo != ArbolMViasBusqueda.POSICION_INVALIDA) {
-                   throw new ExcepcionDatoYaExiste();
+                    throw new ExcepcionDatoYaExiste();
                     //nodoAux = NodoMVias.nodoVacio();
                 } else {
                     if (nodoAux.esHoja()) {
@@ -160,15 +160,15 @@ public class ArbolB<T extends Comparable<T>> extends ArbolMViasBusqueda<T> {
         nodo2.setHijo(0, nodoAux.getHijo(posicionDeClavePadre + 1));
 
         for (int i = 1; i < posicionDeClavePadre; i++) {
-            insertarClaveYValorALosNuevosNodos(nodo1, nodoAux.getDato(i),nodoAux.getHijo(i));	
+            insertarClaveYValorALosNuevosNodos(nodo1, nodoAux.getDato(i), nodoAux.getHijo(i));
         }
         nodo1.setHijo(posicionDeClavePadre, nodoAux.getHijo(posicionDeClavePadre));
 
         for (int i = posicionDeClavePadre + 2; i < super.orden; i++) {
             insertarClaveYValorALosNuevosNodos(nodo2, nodoAux.getDato(i), nodoAux.getHijo(i));
         }
-        nodo2.setHijo(nodo2.numeroDeDatosNoVacios()- 1, nodoAux.getHijo(super.orden - 1));
-        
+        nodo2.setHijo(nodo2.numeroDeDatosNoVacios() - 1, nodoAux.getHijo(super.orden - 1));
+
         nodo2.setHijo(nodo2.numeroDeDatosNoVacios(), nodoAux.getHijo(super.orden));
 
         super.raiz = new NodoMVias<>(super.orden + 1, claveRaiz);
@@ -179,7 +179,7 @@ public class ArbolB<T extends Comparable<T>> extends ArbolMViasBusqueda<T> {
 
     private T prestarseSiguiente(NodoMVias<T> hijoNodoPadre) {
 
-        if (hijoNodoPadre.numeroDeDatosNoVacios()> this.nroMinimoDeDatos) {
+        if (hijoNodoPadre.numeroDeDatosNoVacios() > this.nroMinimoDeDatos) {
 
             return hijoNodoPadre.getDato(0);
         }
@@ -187,9 +187,9 @@ public class ArbolB<T extends Comparable<T>> extends ArbolMViasBusqueda<T> {
     }
 
     private T prestarseAnterior(NodoMVias<T> hijoNodoPadre) {
-        if (hijoNodoPadre.numeroDeDatosNoVacios()> nroMinimoDeDatos) {
+        if (hijoNodoPadre.numeroDeDatosNoVacios() > nroMinimoDeDatos) {
 
-            return hijoNodoPadre.getDato(hijoNodoPadre.numeroDeDatosNoVacios()- 1);
+            return hijoNodoPadre.getDato(hijoNodoPadre.numeroDeDatosNoVacios() - 1);
         }
         return (T) NodoMVias.datoVacio();
     }
@@ -197,7 +197,7 @@ public class ArbolB<T extends Comparable<T>> extends ArbolMViasBusqueda<T> {
     private void insertarDatosDelNodoAEliminar(NodoMVias<T> nodoDelDatoAEliminar,
             NodoMVias<T> siguienteHijoDelNodoPadre) {
         for (int i = 0; i < siguienteHijoDelNodoPadre.numeroDeDatosNoVacios(); i++) {
-            
+
             this.insertarDatoOrdenadoEnNodo(nodoDelDatoAEliminar, siguienteHijoDelNodoPadre.getDato(i));
         }
     }
@@ -209,7 +209,7 @@ public class ArbolB<T extends Comparable<T>> extends ArbolMViasBusqueda<T> {
         } else {
 
             NodoMVias<T> nodoPadre = pilaDeAncestros.pop();
-            int posicionInicialDelNodoPadre = super.buscarPosicionParaBajar( nodoPadre,datoAEliminar);
+            int posicionInicialDelNodoPadre = super.buscarPosicionParaBajar(nodoPadre, datoAEliminar);
 
             // PREGUNTA PARA PRESTARSE LA SIGUIENTE O ANTERIOR POSICION
             // verifica posicion siguiente pero antes verifica que la posicion de los hijos
@@ -234,20 +234,20 @@ public class ArbolB<T extends Comparable<T>> extends ArbolMViasBusqueda<T> {
                     if (claveReemplazoEnElNodoPadre != null) {
                         super.insertarDatoOrdenadoEnNodo(nodoDelDatoAEliminar,
                                 nodoPadre.getDato(posicionInicialDelNodoPadre - 1));
-                        super.eliminarElDatoEnElNodo(anteriorHijoDelNodoPadre,anteriorHijoDelNodoPadre.numeroDeDatosNoVacios()- 1);
+                        super.eliminarElDatoEnElNodo(anteriorHijoDelNodoPadre, anteriorHijoDelNodoPadre.numeroDeDatosNoVacios() - 1);
                         nodoPadre.setDato(posicionInicialDelNodoPadre - 1, claveReemplazoEnElNodoPadre);
                     }
                 } else {
 
                     // desde esta parte se hace el fucionar
-                    super.insertarDatoOrdenadoEnNodo(nodoDelDatoAEliminar,nodoPadre.getDato(posicionInicialDelNodoPadre));
+                    super.insertarDatoOrdenadoEnNodo(nodoDelDatoAEliminar, nodoPadre.getDato(posicionInicialDelNodoPadre));
                     this.insertarDatosDelNodoAEliminar(nodoDelDatoAEliminar, siguienteHijoDelNodoPadre);
                     nodoPadre.setHijo(posicionInicialDelNodoPadre + 1, NodoMVias.nodoVacio());
                     nodoPadre.setDato(posicionInicialDelNodoPadre, (T) NodoMVias.datoVacio());
                 }
             }
 
-            if (nodoPadre.numeroDeDatosNoVacios()< this.nroMinimoDeDatos) {
+            if (nodoPadre.numeroDeDatosNoVacios() < this.nroMinimoDeDatos) {
                 prestarseOFusionar(nodoPadre, pilaDeAncestros, datoAEliminar);
             }
 
@@ -290,8 +290,8 @@ public class ArbolB<T extends Comparable<T>> extends ArbolMViasBusqueda<T> {
         if (nodoDelDatoAEliminar.esHoja()) {
             super.eliminarElDatoEnElNodo(nodoDelDatoAEliminar, posicionDeDatoAEliminar);
             if (nodoDelDatoAEliminar.numeroDeDatosNoVacios() < this.nroMinimoDeDatos) {
-                
-                prestarseOFusionar(nodoDelDatoAEliminar, pilaAncestros,datoAEliminar);
+
+                prestarseOFusionar(nodoDelDatoAEliminar, pilaAncestros, datoAEliminar);
             }
         } else {
             //el dato a eliminar no esta en una hoja, entonces buscamos predecesor inOrden
@@ -301,29 +301,18 @@ public class ArbolB<T extends Comparable<T>> extends ArbolMViasBusqueda<T> {
             T datoDeReemplazo = nodoDelPredecesor.getDato(posicionDelReemplazo);
             nodoDelPredecesor.setDato(posicionDeDatoAEliminar, datoDeReemplazo);
             if (nodoDelPredecesor.numeroDeDatosNoVacios() < this.nroMinimoDeDatos) {
-                prestarseOFusionar(nodoDelPredecesor, pilaAncestros,datoAEliminar);
+                prestarseOFusionar(nodoDelPredecesor, pilaAncestros, datoAEliminar);
             }
         }
     }
-
-    /*private NodoMVias<T> buscarNodoDelPredecesor(NodoMVias<T> nodoActual, Stack<NodoMVias<T>> pilaAncestros) {
-        // Nos movemos siempre hacia el hijo derecho hasta encontrar el predecesor
-        while (!nodoActual.esHoja()) {
-            int ultimaPosicion = nodoActual.numeroDeDatosNoVacios(); // Última posición no vacía
-            pilaAncestros.push(nodoActual); // Guardamos el nodo actual en la pila
-            nodoActual = nodoActual.getHijo(ultimaPosicion); // Bajamos por el hijo más a la derecha
-        }
-        // Al final, tenemos el nodo hoja más a la derecha, que contiene el predecesor
-        return nodoActual;
-    }*/
 
     @Override
     public Persona buscarPersona(T numero) {
         return super.buscarPersona(numero); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
-    
 
-    public String toString() {
+
+    /*public String toString() {
         return toString(this.raiz, 0);
     }
 
@@ -349,6 +338,11 @@ public class ArbolB<T extends Comparable<T>> extends ArbolMViasBusqueda<T> {
         }
 
         return resultado.toString();
+    }*/
+    @Override
+    public String toString() {
+        String a = super.toString();
+        return a;
     }
 
     private int obtenerPosicionDelHijo(NodoMVias<T> nodoPadre, NodoMVias<T> nodoHijo) {
